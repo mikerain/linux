@@ -1,3 +1,5 @@
+#### 如果你的系统中没有/var/log/messages这类日志，可以参考这个：
+
 
 
 **在 RHEL 8 中，`/var/log` 目录下的多数关键日志（如 `messages`、`secure`、`cron` 等）是由 `rsyslog` 服务生成并写入的。**

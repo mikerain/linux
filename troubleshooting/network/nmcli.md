@@ -21,8 +21,15 @@ nmcli connection up <名称>     # 启用某个连接
 nmcli connection down <名称>   # 禁用某个连接
 nmcli connection delete <名称> # 删除连接配置
 nmcli connection modify <名称> ipv4.method auto   # 设置 DHCP
-nmcli connection modify <名称> ipv4.method manual ipv4.addresses 192.168.1.100/24 ipv4.gateway 192.168.1.1 ipv4.dns 8.8.8.8
-                              # 修改为静态 IP
+nmcli connection modify <名称> ipv4.method manual ipv4.addresses 192.168.1.100/24 ipv4.gateway 192.168.1.1 ipv4.dns 8.8.8.8  # 修改为静态 IP
+
+
+#modify dns
+nmcli con mod con1 ipv4.dns 192.168.0.254
+nmcli c down con1
+nmcli c up con1
+
+cat /etc/resolv.conf | grep nameserver
 ```
 
 ------
@@ -63,6 +70,7 @@ nmcli device status         # 查看设备状态
 nmcli device disconnect eth0 # 断开设备
 nmcli device connect eth0    # 连接设备
 nmcli device reapply eth0    # 重新应用当前设置
+
 ```
 
 ------
@@ -86,7 +94,7 @@ nmcli connection reload       # 重新加载配置
 
 
 
-修改 connection name
+### 修改 connection name
 
 nmcli c m 'System eth0' connection.id 'eth0'
 
@@ -101,6 +109,25 @@ System eth0  5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03  ethernet  eth0
 [root@localhost ~]# nmcli c s
 NAME  UUID                                  TYPE      DEVICE 
 eth0  5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03  ethernet  eth0   
+
+```
+
+
+
+### 修改 connection 与device关联
+
+```
+nmcli con mod "Wired connection 2" ifname eth1
+nmcli con up "Wired connection 2"
+nmcli con show
+```
+
+
+
+如果不修改，也可以创建一个新的connection，关联eth1
+
+```
+nmcli con add type ethernet ifname eth1 con-name eth1
 
 ```
 

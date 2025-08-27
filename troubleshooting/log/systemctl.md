@@ -141,3 +141,36 @@ systemctl --failed    # 显示启动失败的服务:cite[1]
 5. **依赖检查** → `systemctl list-dependencies <服务名>`
 
 > 💡 **提示**：所有 `journalctl` 日志由 `systemd-journald` 统一管理，无需额外配置 `syslog` 8。若需持久化存储日志，可配置 `/etc/systemd/journald.conf` 中的 `Storage=persistent`。
+
+
+
+
+
+### 查看启动错误
+
+
+
+```
+systemctl --failed
+  UNIT          LOAD   ACTIVE SUB    DESCRIPTION                 
+● kdump.service loaded failed failed Crash recovery kernel arming
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+
+1 loaded units listed. Pass --all to see loaded but inactive units, too.
+To show all installed unit files use 'systemctl list-unit-files'.
+
+```
+
+
+
+再进一步检查具体问题
+
+```
+systemctl status kdump.service |more
+
+journalctl -u kdump.service --no-pager
+```
+

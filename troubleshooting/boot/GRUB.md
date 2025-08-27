@@ -171,6 +171,8 @@ Diagram
 
 
 
+### grub的修改位置：
+
 
 
 qcow2建立的vm在启动时没有grub的menu出现，rhel8.10
