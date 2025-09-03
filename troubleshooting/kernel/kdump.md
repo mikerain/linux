@@ -1,3 +1,59 @@
+```
+How to troubleshoot kernel crashes, hangs, or reboots with kdump on Red Hat Enterprise Linux
+```
+
+https://access.redhat.com/solutions/6038
+
+The importance of configuring kernel dumps in Red Hat Enterprise Linux
+
+https://www.redhat.com/en/blog/importance-configuring-kernel-dumps-rhel
+
+
+
+
+
+```
+配置和测试kdump的方法：
+
+1.选定vmcore文件存放位置，最简单的就是本地文件系统。
+如果不修改/etc/kdump.conf配置文件的话，默认会存放到/var/crash目录中，建议存放目录的可用空间要和物理内存比例为1：1，这样的要求是为了应对某些极端情况，比如物理内存全部被占满等。
+
+2.设定crashkernel
+
+在RHEL7及以上，默认值auto,默认不需要修改。如果系统中有很多第三方模块，那么建议设置crashkernel=768M,修改方法如下：
+How do I permanently modify the kernel command line on RHEL 7? 
+https://access.redhat.com/solutions/1136173
+
+How do I permanently modify the kernel command line in RHEL 8? 
+https://access.redhat.com/solutions/6383141
+
+How to modify the kernel command-line in Red Hat Enterprise Linux 9 
+https://access.redhat.com/solutions/6668601
+
+3.设置kdump服务开机启动：
+在RHEL7及以上：
+~~~
+systemctl enable kdump
+~~~
+由于配置kdump需要重启系统生效（加载crashkernel），所以还是建议您当配置生效后做个测试，以免耽误解决问题的时间。
+
+4：在业务running时，测试kdump是否可以生成vcmore，测试的vmcore可直接删除。
+请用“echo c > /proc/sysrq-trigger”命令测试kdump是否可以正常生成vmcore。注意:该命令会导致系统kernel panic后重启，如果kdump工作正常，在上面第一步中设置的地方，会有vmcore文件生成。
+
+5:如果您之前已配置过kdump服务，则可执行下面的命令来确认kdump是否启用：
+在RHEL7及以上：
+~~~
+systemctl status kdump
+~~~
+返回结果是：Kdump is operational或active，则说明kdump已经启用了，尽管如此，但还是建议您做个测试，以免耽误解决问题的时间（测试方法见第4点）。
+
+详细内容可以参考以下文档:
+How to troubleshoot kernel crashes, hangs, or reboots with kdump on Red Hat Enterprise Linux
+https://access.redhat.com/node/6038
+```
+
+
+
 启动kdump
 
 ```

@@ -137,7 +137,7 @@ journalctl _PID=$(pgrep httpd)          # 查看指定进程所有日志
 4. **实时监控**：
 
    ```
-tail -f /var/log/messages               # 实时滚动查看
+   tail -f /var/log/messages               # 实时滚动查看
    journalctl -f -u nginx.service          # 跟踪特定服务
 ```
 
@@ -152,7 +152,7 @@ tail -f /var/log/messages               # 实时滚动查看
 
 2. **二进制日志查看**：
 
-   ```
+```
    journalctl --list-boots                 # 查看所有启动会话
    journalctl --disk-usage                 # 检查日志占用空间
    ```
@@ -161,7 +161,7 @@ tail -f /var/log/messages               # 实时滚动查看
 
    - 修改 `/etc/systemd/journald.conf`：
 
-     ```
+   ```
      [Journal]
      SystemMaxUse=1G       # 限制最大磁盘占用
      MaxRetentionSec=1month # 保留时间
@@ -187,3 +187,13 @@ tail -f /var/log/messages               # 实时滚动查看
 | `/var/log/wtmp`     | 由 login 程序直接写入             | ❌ 独立           |
 | `/var/log/btmp`     | 由 SSH/PAM 直接写入               | ❌ 独立           |
 | `messages/secure`   | **不存在**（因无 rsyslog）        | ✅ 依赖           |
+
+
+
+
+
+
+
+```
+ less var/log/messages | egrep -i "INFO: task| BUG:|out of memory|segfault|page allocation|fork|oom-killer|soft lockup|blocked for more than|not responding" | wc -l
+```

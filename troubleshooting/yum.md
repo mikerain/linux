@@ -85,3 +85,20 @@ lvm2-2.03.14-15.el8_10.2.x86_64
 
 ```
 
+
+
+
+
+case:
+
+[How to rebuild RPM database on a Red Hat Enterprise Linux system?]
+https://access.redhat.com/solutions/6903
+
+[yum and rpm get a db5 error]
+https://access.redhat.com/solutions/6930551
+
+
+
+Last opt
+[How to debug recurring rpm database corruption]
+https://access.redhat.com/solutions/3330211

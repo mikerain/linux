@@ -1,3 +1,11 @@
+#### What to do if a server fails to boot?
+
+https://access.redhat.com/articles/5250481
+
+
+
+
+
 ### grub丢失
 
 #### 

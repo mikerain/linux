@@ -192,3 +192,33 @@ us=79~80%, sy=0, id=20%
    - `free≈1GB`，内存压力不大。
 4. **I/O**
    - `bi/bo≈0`，没有磁盘/网络 I/O 压力。
+
+
+
+####  如果是CPU高，且是user space 高，而不是sys高，基本就是用户应用问题，可参考这个
+
+https://access.redhat.com/support/cases/#/case/04217616
+
+```
+12:00:01 AM     CPU     %user     %nice   %system   %iowait    %steal     %idle
+09:10:14 PM     all     79.75      0.00     13.36      1.12      0.02      5.75
+09:20:08 PM     all     73.83      0.00     24.88      1.27      0.02      0.01
+09:30:00 PM     all     79.04      0.00     20.02      0.92      0.02      0.00
+```
+
+
+
+```
+b. Run the subsequent commands to execute collectl.
+                	# tar -hxvf collectl.gz
+                	# cd collectl
+                	# ./INSTALL
+                	# cd ..
+                	# systemctl start collectl
+                	# systemctl enable collectl
+ 
+		c. More information on collectl can be found in the following knowledge article.
+
+			* How to use the collectl utility to troubleshoot performance issues in Red Hat Enterprise Linux
+			  https://access.redhat.com/articles/351143
+```
