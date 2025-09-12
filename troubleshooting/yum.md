@@ -102,3 +102,38 @@ https://access.redhat.com/solutions/6930551
 Last opt
 [How to debug recurring rpm database corruption]
 https://access.redhat.com/solutions/3330211
+
+
+
+
+
+case: https://access.redhat.com/support/cases/#/case/04095995
+
+在rhel8上安装了rhel7的rpm,引起的so文件缺失，
+
+
+
+rpm -Va 验证系统中已安装的所有 RPM 包中的文件是否与安装时记录的元数据一致
+
+`rpm -qf` 是 **RPM 包管理器**中的一个查询子命令，作用是
+
+```
+# rpm -Va &> /tmp/rpmva.txt    ######### This command will take some time
+# egrep -v " c | d | g " /tmp/rpmva.txt  | awk '{print $NF}' | sort | uniq | xargs rpm -qf 2> /dev/null | sort | uniq &> /tmp/pkgs.txt
+```
+
+
+
+ yum reinstall  重新安装，
+
+`package-cleanup --problems` 的用途是：
+
+👉 **检查系统中已安装的软件包是否存在依赖关系问题**。
+
+```
+ yum reinstall redhat-rpm-config gcc glibc-devel sysstat fontconfig ntp dejavu-sans-fonts glibc-headers cpp libxcrypt-devel iftop
+
+- Provide the output of the following command:
+ 
+# package-cleanup --problems
+```

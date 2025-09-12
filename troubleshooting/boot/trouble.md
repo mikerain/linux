@@ -4,6 +4,12 @@ https://access.redhat.com/articles/5250481
 
 
 
+在emergency模式下查看日志，找相关的错误信息
+
+```
+journalctl -xb 
+```
+
 
 
 ### grub丢失
@@ -167,4 +173,6 @@ grubby --info=ALL
 grubby --set-default=/boot/vmlinuz-4.18.0-305.el8.x86_64
 reboot
 ```
+
+
 

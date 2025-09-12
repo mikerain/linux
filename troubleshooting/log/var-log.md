@@ -197,3 +197,17 @@ journalctl _PID=$(pgrep httpd)          # 查看指定进程所有日志
 ```
  less var/log/messages | egrep -i "INFO: task| BUG:|out of memory|segfault|page allocation|fork|oom-killer|soft lockup|blocked for more than|not responding" | wc -l
 ```
+
+
+
+
+
+find reboot , restart log
+
+- `/var/log/messages` shows below logs post system reboot in `startup logs` for multiple system reboot frequently.
+
+[Raw](https://access.redhat.com/solutions/5680431#)
+
+```
+$ grep -i reboot messages
+```

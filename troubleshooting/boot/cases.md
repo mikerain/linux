@@ -4,6 +4,10 @@ https://access.redhat.com/articles/5250481
 
 
 
+After update, kernel panic at boot with error: Unable to mount root fs on unknown-block(0,0)
+
+https://access.redhat.com/solutions/57018
+
 
 
 Server Booted into Emergency Mode
@@ -52,4 +56,89 @@ Thanks for your time over the call, below is the summary :
 	
 [7] We rebooted the server and its' booted fine AND also able to mount /boot/efi.
 ```
+
+
+
+How to rebuild the initial ramdisk image in Red Hat Enterprise Linux
+
+https://access.redhat.com/solutions/1958	
+
+
+
+What is 'Signal 15' ?
+
+https://access.redhat.com/solutions/737033
+
+
+
+Why does Red Hat Enterprise Linux Server reboot with "signal 15" messages in /var/log/messages?
+
+https://access.redhat.com/solutions/31411
+
+
+
+How to find which user has rebooted the system?
+
+https://access.redhat.com/solutions/41281
+
+
+
+How to boot Red Hat Enterprise Linux to Rescue Mode for Data Collection (sosreport, vmcore, etc.)
+
+https://access.redhat.com/articles/3405661
+
+
+
+How to troubleshoot kernel crashes, hangs, or reboots with kdump on Red Hat Enterprise Linux
+
+https://access.redhat.com/solutions/6038
+
+
+
+```
+Failed to mount /boot/efi.
+```
+
+https://access.redhat.com/support/cases/#/case/03221684
+
+
+
+```
+rebuild the initramfs with multipath in
+```
+
+https://access.redhat.com/solutions/135713
+
+https://access.redhat.com/support/cases/#/case/03204182
+
+```
+>>>> How can we avoid this same problem during the next patch cycle ? 
+
+ANS. Prior patching we can perform backup of old initramfs file as below. 
+
+# cp -p /boot/initramfs-3.10.0-693.2.2.el7.x86_64.img /boot/initramfs-3.10.0-693.2.2.el7.x86_64.img.bkp
+```
+
+
+
+
+
+How to generate BLS configuration files under /boot/loader/entries in Red Hat Enterprise Linux?
+
+https://access.redhat.com/solutions/5847011
+
+
+
+How to repair filesystem in rescue environment for Red Hat Enterprise Linux?
+
+https://access.redhat.com/solutions/9541
+
+```
+# lsblk
+# lvs -ao+devices
+# vgs
+# xfs_repair -n /dev/sda2
+```
+
+
 

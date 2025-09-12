@@ -274,3 +274,42 @@ sosreport-hostname-xxxx-2024-08-06-abcd/
 
 
 
+
+
+case
+
+https://access.redhat.com/support/cases/#/case/04234533
+
+
+
+
+
+find reboot key workds from sosreport:
+
+```
+ cat last | grep reboot | head
+```
+
+
+
+find Received SIGINT from var/log/messages
+
+```
+ less var/log/messages
+ 
+ Jul 24 14:14:30 DMSAPP15 kernel: [drm:qxl_alloc_bo_reserved [qxl]] *ERROR* failed to allocate VRAM BO
+Jul 24 14:14:35 DMSAPP15 systemd[1]: Received SIGINT.                  <<<--------------[SERVER Received SIGINT]
+
+  X---------------------Server Reboot-----------------------X
+
+Jul 24 14:16:06 DMSAPP15 kernel: Command line: BOOT_IMAGE=(hd0,msdos1)/vmlinuz-5.14.0-503.40.1.el9_5.x86_64 root=/dev/mapper/rhel-root ro spectre_v2=retpoline rd.lvm.lv=rhel/root rd.lvm.lv=rhel/swap rd.lvm.lv=rhel/usr rhgb quiet rd.plymouth=0 plymouth.enable=0 crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M net.ifnames=0
+```
+
+
+
+```
+ grep -i "not responding" var/log/messages
+Jul 20 05:16:36 vor1rcmcjpmmq02 kernel: nfs: server VORG3LNPCIC5NFS.vorisilon5.prod.local not responding, still trying
+
+$ grep "signal 15" var/log/messages
+```
